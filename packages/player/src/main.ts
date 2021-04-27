@@ -47,7 +47,11 @@ const defaultReplayOptions = {
     target: window,
     heatPoints: true,
     timeMode: 'durationTime',
-    fastForward: [2, 8]
+    fastForward: [2, 8],
+    cssOptions: {
+        disablePointerEvents: true,
+        disableScrollbars: true
+    }
 }
 
 export class Player {
@@ -77,7 +81,11 @@ export class PlayerModule {
         const opts = {
             destroyStore: this.destroyStore,
             ...defaultReplayOptions,
-            ...options
+            ...options,
+            cssOptions: {
+                ...defaultReplayOptions.cssOptions,
+                ...options?.cssOptions
+            }
         } as ReplayInternalOptions
 
         this.options = opts
